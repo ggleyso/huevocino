@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import path from 'node:path';
+import fs from 'node:fs';
 import rateLimit from 'express-rate-limit';
 import { Store, validateName } from './store.js';
 import { RoundManager, RoundError } from './rounds.js';
@@ -289,6 +291,15 @@ app.post('/api/admin/commission', requireAdmin, (req, res) => {
   store.setCommission(Math.floor(percent), enabled);
   res.json({ ...store.commission(), treasury: store.data.treasury });
 });
+
+// отдаём собранный фронтенд, если он есть
+const FRONTEND_DIST = path.resolve(process.cwd(), '../frontend/dist');
+if (fs.existsSync(FRONTEND_DIST)) {
+  app.use(express.static(FRONTEND_DIST));
+  app.get(/^\/(?!api\/|health).*/, (_req, res) => {
+    res.sendFile(path.join(FRONTEND_DIST, 'index.html'));
+  });
+}
 
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err);

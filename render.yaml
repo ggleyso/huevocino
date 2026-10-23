@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: vzlet
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
+    startCommand: cd backend && npm run dev
+    envVars:
+      - key: DEV_AUTH
+        value: "true"
