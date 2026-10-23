@@ -4,6 +4,7 @@ import { takeBet, settle, num } from './common.js';
 import { DiceGame, CoinGame, WheelGame, PenaltyGame, HorsesGame } from './luck.js';
 import { MinesGame, LadderGame, ChickenGame, KenoGame, TicTacToeGame } from './grids.js';
 import { VideoPokerGame, BaccaratGame, WarGame, HiloGame, RedDogGame } from './cards.js';
+import { RouletteGame, PlinkoGame, BalloonGame } from './casino.js';
 
 export type { ArcadeGame, ArcadeMeta } from './common.js';
 
@@ -27,6 +28,9 @@ export class ArcadeRegistry {
       new ChickenGame(store),
       new RedDogGame(store),
       new KenoGame(store),
+      new RouletteGame(store),
+      new PlinkoGame(store),
+      new BalloonGame(store),
     ]) {
       this.games.set(g.meta.id, g);
     }

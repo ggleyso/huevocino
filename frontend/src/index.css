@@ -2442,4 +2442,233 @@ input[type='number']:focus {
 
 .hilo-card.red .hilo-suit { color: var(--red); }
 
+/* --- рулетка --- */
+.roulette-stage {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.roulette-ball {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  transition: transform 2s cubic-bezier(0.22, 0.68, 0.18, 1);
+}
+
+.roulette-ball.spinning {
+  animation: rouletteSpin 1.5s ease-out;
+}
+
+@keyframes rouletteSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1440deg); }
+}
+
+.roulette-wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid #6b4f0e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  background: conic-gradient(
+    #0a7d3a 0deg 9.73deg, #dc2626 9.73deg 19.46deg, #1f2937 19.46deg 29.19deg,
+    #dc2626 29.19deg 38.92deg, #1f2937 38.92deg 48.65deg, #dc2626 48.65deg 58.38deg,
+    #1f2937 58.38deg 68.11deg, #dc2626 68.11deg 77.84deg, #1f2937 77.84deg 87.57deg,
+    #dc2626 87.57deg 97.3deg, #1f2937 97.3deg 107.03deg, #dc2626 107.03deg 116.76deg,
+    #1f2937 116.76deg 126.49deg, #dc2626 126.49deg 136.22deg, #1f2937 136.22deg 145.95deg,
+    #dc2626 145.95deg 155.68deg, #1f2937 155.68deg 165.41deg, #dc2626 165.41deg 175.14deg,
+    #1f2937 175.14deg 184.86deg, #dc2626 184.86deg 194.59deg, #1f2937 194.59deg 204.32deg,
+    #dc2626 204.32deg 214.05deg, #1f2937 214.05deg 223.78deg, #dc2626 223.78deg 233.51deg,
+    #1f2937 233.51deg 243.24deg, #dc2626 243.24deg 252.97deg, #1f2937 252.97deg 262.7deg,
+    #dc2626 262.7deg 272.43deg, #1f2937 272.43deg 282.16deg, #dc2626 282.16deg 291.89deg,
+    #1f2937 291.89deg 301.62deg, #dc2626 301.62deg 311.35deg, #1f2937 311.35deg 321.08deg,
+    #dc2626 321.08deg 330.81deg, #1f2937 330.81deg 340.54deg, #dc2626 340.54deg 350.27deg,
+    #1f2937 350.27deg 360deg
+  );
+}
+
+.roulette-seg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 50%;
+  transform-origin: bottom center;
+}
+
+.roulette-result {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  border: 4px solid #6b4f0e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.roulette-result.red { background: #dc2626; }
+.roulette-result.black { background: #1f2937; }
+.roulette-result.green { background: #0a7d3a; }
+
+.roulette-bets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roulette-row {
+  display: flex;
+  gap: 6px;
+}
+
+.rl-btn {
+  flex: 1;
+  padding: 10px 8px !important;
+  font-size: 13px !important;
+  border-radius: 10px !important;
+}
+
+.roulette-numbers {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 3px;
+}
+
+.rl-num, .rl-zero {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  border: none;
+  transition: transform 0.1s;
+}
+
+.rl-num.red { background: #dc2626; }
+.rl-num.black { background: #1f2937; }
+.rl-zero { background: #0a7d3a; grid-column: span 9; aspect-ratio: auto; padding: 6px; }
+
+.rl-num:hover:not(:disabled), .rl-zero:hover:not(:disabled) { transform: scale(1.08); }
+
+/* --- плинко --- */
+.plinko-stage {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.plinko-pyramid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.plinko-row {
+  display: flex;
+  gap: 24px;
+}
+
+.plinko-pin {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.plinko-slots {
+  display: flex;
+  gap: 3px;
+  width: 100%;
+}
+
+.plinko-slot {
+  flex: 1;
+  padding: 6px 2px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 900;
+  text-align: center;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.plinko-slot.high { background: linear-gradient(180deg, #f59e0b, #d97706); }
+.plinko-slot.mid { background: linear-gradient(180deg, #3b82f6, #2563eb); }
+.plinko-slot.low { background: linear-gradient(180deg, #6b7280, #4b5563); }
+.plinko-slot.hit { box-shadow: 0 0 12px rgba(255, 209, 102, 0.8); transform: scale(1.15); }
+
+/* --- шарик --- */
+.balloon-stage {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  min-height: 200px;
+  justify-content: center;
+}
+
+.balloon-stage.idle { gap: 14px; }
+
+.balloon {
+  font-size: 120px;
+  line-height: 1;
+  transition: font-size 0.3s, filter 0.3s;
+  cursor: pointer;
+  filter: drop-shadow(0 8px 16px rgba(225, 29, 72, 0.3));
+}
+
+.balloon.idle-balloon { font-size: 80px; opacity: 0.6; }
+.balloon.popped { animation: balloonPop 0.4s ease; }
+
+@keyframes balloonPop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.balloon-mult {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(255, 209, 102, 0.4);
+}
+
+.balloon-mult.dead { color: var(--red); text-shadow: none; }
+
+.balloon-text {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  max-width: 300px;
+}
+
 

@@ -6,6 +6,7 @@ import { fetchArcadeList, useArcade, useBet, type ArcadeApi } from './arcade/use
 import { DiceGame, CoinGame, WheelGame, PenaltyGame, HorsesGame } from './arcade/gamesLuck';
 import { MinesGame, LadderGame, ChickenGame, KenoGame, TicTacToeGame } from './arcade/gamesGrid';
 import { VideoPokerGame, BaccaratGame, WarGame, HiloGame, RedDogGame } from './arcade/gamesCards';
+import { RouletteGame, PlinkoGame, BalloonGame } from './arcade/gamesCasino';
 import type { ArcadeMeta, ArcadeState } from '../types';
 
 const GAME_COMPONENTS: Record<string, (p: { api: ArcadeApi; bet: number; setBet: (n: number) => void }) => JSX.Element> = {
@@ -24,6 +25,9 @@ const GAME_COMPONENTS: Record<string, (p: { api: ArcadeApi; bet: number; setBet:
   chicken: ChickenGame,
   reddog: RedDogGame,
   keno: KenoGame,
+  roulette: RouletteGame,
+  plinko: PlinkoGame,
+  balloon: BalloonGame,
 };
 
 const TAGS = ['Все', 'Шанс', 'Риск', 'Карты', 'Серия', 'ИИ', 'Лотерея', 'Гонка'];
@@ -90,7 +94,7 @@ export function ArcadePage() {
   return (
     <div className="game-page">
       <div className="page-head">
-        <h2>🎮 Аркада — 15 игр</h2>
+        <h2>🎮 Аркада — 18 игр</h2>
         <span className="balance-pill">🪙 {fmt(balance)}</span>
       </div>
 
